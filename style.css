@@ -1,0 +1,33 @@
+body{
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'SimHei', sans-serif;
+}
+
+.title{
+  letter-spacing: 0.5rem;
+}
+
+.location{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+a .btn-outline-secondary:focus, a .btn-outline-secondary:visited {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+
+
+
