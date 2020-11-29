@@ -3,19 +3,11 @@ body{
   width: 100vw;
   height: 100vh;
   font-family: 'SimHei', sans-serif;
+  box-sizing: border-box;
 }
 
 .title{
-  letter-spacing: 0.5rem;
-}
-
-.location{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+  letter-spacing: 0.3rem;
 }
 
 a:hover{
