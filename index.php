@@ -15,25 +15,31 @@
 </head>
 
 <body>
+  <!-- navbar，在解析度992px以下才會出現 -->
   <div class="d-lg-none">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#Menu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="Menu">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <li class="mt-2 nav-item active">
+            <a class="nav-link" href="index.php">首頁</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+          <li class="mt-2 nav-item">
+            <a class="nav-link" href="?do=add_invoices.php">新增發票</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+          <li class="mt-2 nav-item">
+            <a class="nav-link" href="?do=edit_invoices.php">發票管理</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <li class="mt-2 nav-item">
+            <a class="nav-link" href="?do=add_award_numbers.php">新增獎號</a>
+          </li>
+          <li class="mt-2 nav-item">
+            <a class="nav-link" href="?do=award_numbers_list.php">獎號清單</a>
+          </li>
+          <li class="mt-2 nav-item">
+            <a class="nav-link" href="?do=reward.php">對獎</a>
           </li>
         </ul>
       </div>
@@ -41,39 +47,38 @@
   </div>
 
 
-  <div class="">
-    <div class="d-flex justify-content-center mx-3 py-4 row">
-      <div class="col-lg-2"></div>
-      <h2 class="col-lg-7 col-12 text-center"><a href="index.php" class="title text-muted font-weight-bolder">統一發票對獎系統</a></h2>
+  <div class="d-flex justify-content-center mx-3 py-4 row">
+    <div class="col-lg-2"></div>
+    <h2 class="col-lg-7 col-12 text-center"><a href="index.php" class="title text-muted font-weight-bolder">統一發票對獎系統</a></h2>
+  </div>
+
+  <!-- 選單區，在解析度992px以上才會出現 -->
+  <div class="mx-3 row d-flex justify-content-center">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="col-2 d-none d-lg-block">
+        <a href="index.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">首頁</button></a>
+        <a href="?do=add_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">新增發票</button></a>
+        <a href="?do=edit_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">發票管理</button></a>
+        <a href="?do=add_award_numbers.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">新增獎號</button></a>
+        <a href="?do=award_numbers_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">獎號清單</button></a>
+        <a href="?do=reward.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">對獎</button></a>
+      </div>
+      <div class="col-7 border rounded py-5 d-flex justify-content-center" style="height:80vh">
+      <?php
+
+      //在需要顯示在此區的網頁網址加上 ?do=....
+      //判斷 isset($_GET['do'])
+      //若成立則是用include帶入，並顯示在這個區域
+      //若不成立則顯示一開始的main.php內容
+      if(isset($_GET['do'])){
+        include_once $_GET['do'];
+      }else{
+        include_once "main.php";
+      }
+      ?>
+      </div>
     </div>
     
-    <!-- 在解析度992px以下不會出現，連結的頁面會以include方式出現在同一視窗內 -->
-    <div class="mx-3 row d-flex justify-content-center">
-      <div class="col-12 d-flex justify-content-center">
-        <div class="col-2 d-none d-lg-block">
-          <a href="index.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">首頁</button></a>
-          <a href="?do=add_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">新增發票</button></a>
-          <a href="?do=edit_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">發票管理</button></a>
-          <a href="?do=award_numbers_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">獎號清單</button></a>
-          <a href="?do=reward.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">對獎</button></a>
-        </div>
-        <div class="col-7 border rounded" style="height:80vh">
-        <?php
-
-        //在需要顯示在此區的網頁網址加上 ?do=....
-        //判斷 isset($_GET['do'])
-        //若成立則是用include帶入，並顯示在這個區域
-        //若不成立則顯示一開始的main.php內容
-        if(isset($_GET['do'])){
-          include_once $_GET['do'];
-        }else{
-          include_once "main.php";
-        }
-        ?>
-        </div>
-      </div>
-      
-    </div>
   </div>
 
 
