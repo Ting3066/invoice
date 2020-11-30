@@ -1,39 +1,32 @@
 <?php
-//發票管理頁面
+//發票編輯功能
 include_once "base.php";
 
-$sql="select * from invoices";
-$invs=$pdo->query($sql)->fetchALL();
+$sql="select * from invoices where `id`={$_GET['id']}";
+$inv=$pdo->query($sql)->fetch();
 
 ?>
 
-<table class="table table-borderless text-center text-muted font-weight-bold">
-  <tr>
-    <td>發票號碼</td>
-    <td>發票金額</td>
-    <td>消費日期</td>
-    <td>管理</td>
-  </tr>
-
-  <?php
-  foreach($invs as $inv){
-  
-  ?>
-  <tr>
-    <td><?=$inv['code'].$inv['number'];?></td>
-    <td><?=$inv['payment'];?></td>
-    <td><?=$inv['date'];?></td>
-    <td>
-      <button class="btn btn-sm btn-success">
-        <a href="" class="text-decoration-none text-light">編輯</a>
-      </button>
-      <button class="btn btn-sm btn-danger">
-        <a href="" class="text-decoration-none text-light">刪除</a>
-      </button>
-    </td>
-  </tr>
-  <?php
-  }
-
-  ?>
-</table>
+<form action="update_invoices.php" method="post">
+  <div>
+    <input type="hidden" name="id" value="<?=$inv['id'];?>">
+    <!-- 取得id，但不顯示 -->
+  </div>
+  <div>
+    發票號碼:
+    <input type="text" name="code" value="<?=$inv['code'];?>" style="width:30px">
+    <input type="text" name="number" value="<?=$inv['number'];?>">
+  </div>
+  <div>
+    發票金額:
+    <input type="number" name="payment" value="<?=$inv['payment'];?>">
+  </div>
+  <div>
+    消費日期:
+    <input type="date" name="date" value="<?=$inv['date'];?>">
+  </div>
+  <div>
+    <input type="submit" value="修改">
+    <input type="reset" value="重置">
+  </div>
+</form>

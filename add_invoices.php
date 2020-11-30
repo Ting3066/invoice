@@ -1,6 +1,6 @@
 <!-- 新增發票頁面 -->
 
-  <form action="" method="post">
+  <form action="insert_invoices.php" method="post">
     <table class="table table-borderless">
       <tr>
         <td>日期:</td>

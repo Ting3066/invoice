@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://kit.fontawesome.com/bc80d402a1.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
@@ -58,12 +59,12 @@
       <div class="col-2 d-none d-lg-block">
         <a href="index.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">首頁</button></a>
         <a href="?do=add_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">新增發票</button></a>
-        <a href="?do=edit_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">發票管理</button></a>
+        <a href="?do=invoices_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">發票管理</button></a>
         <a href="?do=add_award_numbers.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">新增獎號</button></a>
         <a href="?do=award_numbers_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">獎號清單</button></a>
         <a href="?do=reward.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">對獎</button></a>
       </div>
-      <div class="col-7 border rounded py-5 d-flex justify-content-center" style="height:80vh">
+      <div class="col-7 border rounded py-5 d-flex align-items-center flex-column">
       <?php
 
       //在需要顯示在此區的網頁網址加上 ?do=....

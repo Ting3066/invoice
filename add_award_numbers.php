@@ -1,6 +1,6 @@
 <!-- 新增獎號頁面 -->
 
-<form action="" method="post" class="container">
+<form action="insert_award_numbers.php" method="post" class="container">
   <table class="table table-sm table-bordered">
     <tbody>
       <tr>
