@@ -7,7 +7,7 @@ $invs=$pdo->query($sql)->fetchALL();
 
 ?>
 
-<table class="table table-borderless table-hover text-center text-muted" style="width:90%">
+<table class="table table-borderless table-hover text-center text-muted">
   <tr class="font-weight-bolder bg-secondary text-light">
     <td>發票號碼</td>
     <td>發票金額</td>
