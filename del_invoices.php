@@ -2,7 +2,7 @@
 
   <div>確定要刪除此筆資料嗎?
     <button>
-      <a href="del.php?id=<?=$_GET['id'];?>" class="text-decoration-none">確定</a>
+      <a href="del.php?id=<?=$_GET['id'];?>&del=invoices" class="text-decoration-none">確定</a>
       <!-- 若確定刪除，引導至del.php進行刪除動作 -->
     </button>
     <button>

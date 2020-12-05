@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://kit.fontawesome.com/bc80d402a1.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -40,7 +41,7 @@
             <a class="nav-link" href="?do=award_numbers_list.php">獎號清單</a>
           </li>
           <li class="mt-2 nav-item">
-            <a class="nav-link" href="?do=reward.php">對獎</a>
+            <a class="nav-link" href="#">對獎</a>
           </li>
         </ul>
       </div>
@@ -57,12 +58,12 @@
   <div class="mx-3 row d-flex justify-content-center">
     <div class="col-12 d-flex justify-content-center">
       <div class="col-2 d-none d-lg-block">
-        <a href="index.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">首頁</button></a>
-        <a href="?do=add_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">新增發票</button></a>
-        <a href="?do=invoices_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">發票管理</button></a>
-        <a href="?do=add_award_numbers.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">新增獎號</button></a>
-        <a href="?do=award_numbers_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">獎號清單</button></a>
-        <a href="?do=reward.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1">對獎</button></a>
+        <a href="index.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-home mx-2"></i>　首頁　</button></a>
+        <a href="?do=add_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-plus-square mx-2"></i>新增發票</button></a>
+        <a href="?do=invoices_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-clipboard mx-2"></i>發票管理</button></a>
+        <a href="?do=add_award_numbers.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-plus-square mx-2"></i>新增獎號</button></a>
+        <a href="?do=award_numbers_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-list-alt mx-2"></i>獎號清單</button></a>
+        <a href="#"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-search-dollar mx-2"></i>　對獎　</button></a>
       </div>
       <div class="col-7 border rounded py-5 d-flex align-items-center flex-column">
       <?php
@@ -73,7 +74,8 @@
       //若不成立則顯示一開始的main.php內容
       if(isset($_GET['do'])){
         include_once $_GET['do'];
-      }else{
+      }
+      else{
         include_once "main.php";
       }
       ?>

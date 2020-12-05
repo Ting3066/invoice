@@ -4,6 +4,7 @@ body{
   height: 100vh;
   font-family: 'SimHei', sans-serif;
   box-sizing: border-box;
+  background-color: #fbfbfb;
 }
 
 .title{
@@ -12,12 +13,6 @@ body{
 
 a:hover{
   text-decoration: none;
-}
-
-a .btn-outline-secondary:focus, a .btn-outline-secondary:visited {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
 }
 
 

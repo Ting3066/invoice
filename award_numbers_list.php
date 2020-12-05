@@ -4,7 +4,7 @@ include_once "base.php";
 $sql="select * from award_numbers";
 $award_numbers=$pdo->query($sql)->fetchALL();
 
-// 若有查詢到獎號，開始執行以下程式，否則顯示"尚未建立任何一期獎號資料"
+// 若有查詢到獎號，開始執行以下程式判斷要顯示的資料，否則顯示"尚未建立任何一期獎號資料"
 if(!empty($award_numbers)){
 ?>
 <form action="search_award_numbers.php" class="container" method="post">
@@ -13,6 +13,7 @@ if(!empty($award_numbers)){
       <tr>
         <th>年月份</th>
         <td>
+          <div class="row">
             <?php
             
 
@@ -27,9 +28,14 @@ if(!empty($award_numbers)){
               //查詢欄預設值的設定
               //若是從此表單進行查詢，或從輸入獎號頁面過來帶有$_GET['pd']，則顯示輸入期別的獎號
               if(isset($_GET['pd']) && isset($_GET['year'])){
-
-                echo "<input type='number' name='year' min=".(date('Y')-1)." max=".date('Y')." value=".$_GET['year'].">年";  //預設值為輸入獎號的年份，查詢值最小為去年，最大為今年(因不會有未來獎號)
-                echo "<select name='period'>";
+                echo "<div class='input-group input-group-sm col-4'>";
+                echo "<input type='number' name='year' min=".(date('Y')-1)." max=".date('Y')." value=".$_GET['year']." class='form-control'>";  //預設值為輸入獎號的年份，查詢值最小為去年，最大為今年(因不會有未來獎號)
+                echo "<div class='input-group-append'>";
+                echo "<label class='input-group-text'>年</label>";
+                echo "</div>";
+                echo "</div>";
+                echo "<div class='input-group input-group-sm col-4'>";
+                echo "<select  class='custom-select' name='period'>";
 
                 for($i=1;$i<7;$i++){
                   if($_GET['pd']==$i){
@@ -57,9 +63,14 @@ if(!empty($award_numbers)){
                   $year=$awards['year'];
                   $period=$awards['period'];
                   
-    
-                  echo "<input type='number' name='year' min=".(date('Y')-1)." max=".date('Y')." value=".$year.">年";  //預設值為最近年份，不一定在去年或今年(可能中間某幾期沒有對獎)，但查詢值最小為去年，最大為今年
-                  echo "<select name='period'>";
+                  echo "<div class='input-group input-group-sm col-4'>";
+                  echo "<input type='number' name='year' min=".(date('Y')-1)." max=".date('Y')." value=".$year." class='form-control'>";  //預設值為最近年份，不一定在去年或今年(可能中間某幾期沒有對獎)，但查詢值最小為去年，最大為今年
+                  echo "<div class='input-group-append'>";
+                  echo "<label class='input-group-text'>年</label>";
+                  echo "</div>";
+                  echo "</div>";
+                  echo "<div class='input-group input-group-sm col-4'>";
+                  echo "<select  class='custom-select' name='period'>";
     
                   for($j=0;$j<6;$j++){
                     if($period==($j+1)){
@@ -81,8 +92,15 @@ if(!empty($award_numbers)){
               }
 
             ?>
-          </select>月
-          <input type="submit" value="查詢">
+              </select>
+              <div class='input-group-append'>
+                <label class='input-group-text'>月</label>
+              </div>
+            </div>
+            <div class="input-group input-group-sm col-2">
+              <button class="btn btn-sm btn-info" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
         </td>
       </tr>
       <?php
@@ -110,27 +128,62 @@ if(!empty($award_numbers)){
       ?>
       <tr>
         <th rowspan=2>特別獎</th>
-        <td class="text-danger font-weight-bolder h5"><?=$special_prize;?></td>
+        <td class="font-weight-bolder h5">
+          <?php
+            if(!empty($special_prize)){
+          ?>
+          <span class="text-danger mr-2"><?=$special_prize;?></span>
+          <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=1"><i class="fas fa-pen text-muted"></i></a>
+          <?php
+            }else{
+              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+            }
+          ?>
+        </td>
       </tr>
       <tr>
         <td>同期統一發票收執聯8位數號碼與特別獎號碼相同者獎金1,000萬元</td>
       </tr>
       <tr>
         <th rowspan=2>特獎</th>
-        <td class="text-danger font-weight-bolder h5"><?=$grand_prize;?></td>
+        <td class="font-weight-bolder h5">
+          <?php
+              if(!empty($grand_prize)){
+          ?>
+          <span class="text-danger mr-2"><?=$grand_prize;?></span>
+          <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=2"><i class="fas fa-pen text-muted"></i></a>
+          <?php
+            }else{
+              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+            }
+          ?>
+        </td>
       </tr>
       <tr>
         <td>同期統一發票收執聯8位數號碼與特獎號碼相同者獎金200萬元</td>
       </tr>
       <tr>
         <th rowspan=2>頭獎</th>
-        <td class="text-danger font-weight-bolder h5">
-        <?php
-          //將陣列$first_prize內的獎號一一印出
-          foreach($first_prize as $first){
-            echo $first."<br>";
-          }
-        ?>
+        <td class="font-weight-bolder h5">
+          <?php
+              if(!empty($first_prize)){
+          ?>
+          <div class="d-flex">
+            <span class="text-danger mr-2">
+            <?php
+              //將陣列$first_prize內的獎號一一印出
+              foreach($first_prize as $first){
+                echo $first."<br>";
+              }
+            ?>
+            </span>
+            <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=3"><i class="fas fa-pen text-muted"></i></a>
+            <?php
+            }else{
+              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+            }
+            ?>
+          </div>
         </td>
       </tr>
       <tr>
@@ -138,13 +191,26 @@ if(!empty($award_numbers)){
       </tr>
       <tr>
         <th>增開六獎</th>
-        <td class="text-danger font-weight-bolder h5">
-        <?php
-        //將陣列$add_six_prize內的獎號一一印出
-          foreach($add_six_prize as $six){
-            echo $six."<br>";
-          }
-        ?>
+        <td class="font-weight-bolder h5">
+          <?php
+              if(!empty($first_prize)){
+          ?>
+          <div class="d-flex">
+            <span class="text-danger mr-2">
+            <?php
+              //將陣列$add_six_prize內的獎號一一印出
+              foreach($add_six_prize as $six){
+                echo $six."<br>";
+              }
+            ?>
+            </span>
+            <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=4"><i class="fas fa-pen text-muted"></i></a>
+            <?php
+            }else{
+              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+            }
+            ?>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -154,12 +220,17 @@ if(!empty($award_numbers)){
 <?php
   $award=$pdo->query($sql)->fetch();
 ?>
-<button class="btn btn-primary mx-auto">
-  <a href="index.php?do=reward.php&pd=<?= $award['period'];?>&year=<?= $award['year'];?>" class="text-decoration-none text-light">對獎</a>
-</button>
+<div>
+  <button class="btn btn-info">
+    <a href="index.php?do=reward.php&pd=<?= $award['period'];?>&year=<?= $award['year'];?>" class="text-decoration-none text-light">對獎</a>
+  </button>
+  <button class="btn btn-danger">
+    <a href="index.php?do=del_award_numbers.php&pd=<?= $award['period'];?>&year=<?= $award['year'];?>" class="text-decoration-none text-light">刪除</a>
+  </button>
+</div>
 
 <?php 
 }else{
-  echo "尚未建立任何一期獎號資料";
+  echo "<span class='text-muted font-weight-bolder'>尚未建立任何一期獎號資料</span>";
 }
 ?>
