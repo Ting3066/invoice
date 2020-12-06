@@ -20,7 +20,7 @@ if(!empty($invoices)){
         '11~12'
       ];
       //查詢欄預設值的設定
-      //若是從此表單進行查詢，或從輸入獎號頁面過來帶有$_GET['pd']，則顯示輸入期別的獎號
+      //若是從此表單進行查詢，或從新增發票頁面過來帶有$_GET['pd']，則顯示輸入期別的發票資料
       if(isset($_GET['pd']) && isset($_GET['year'])){
         $year=$_GET['year'];
         $period=$_GET['pd'];
@@ -50,7 +50,7 @@ if(!empty($invoices)){
         $invs=$pdo->query($sql)->fetchALL();
         
 
-      //若不是在此表單進行查詢，或從輸入獎號以外的頁面過來，沒有$_GET['pd']，則顯示最新一期的年份與期別
+      //若不是在此表單進行查詢，或從新增發票以外的頁面過來，沒有$_GET['pd']，則顯示最新一期的年份與期別
       }else{  
 
           //取得最新的年份與期數
@@ -80,7 +80,7 @@ if(!empty($invoices)){
             }
           }
           
-          //查詢資料庫，若沒有設$_GET['pd']與$_GET['year'，則以$period (最新期別) 與$year (最近年份) 分別作為period與year的判斷值
+          //查詢資料庫，若沒有設$_GET['pd']與$_GET['year'，則以$period (最新期別) 與$year (最近年份) 分別作為period與date年份的判斷值
           $sql="select * from invoices where period='$period' && left(date,4)='$year' order by date desc,id desc";
           $invs=$pdo->query($sql)->fetchALL();
 

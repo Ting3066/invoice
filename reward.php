@@ -49,7 +49,7 @@ include_once "base.php";
               echo "</td>";
               echo "</tr>";
               $all_res=1;
-              $sum=$sum+10000000;
+              $sum=$sum+10000000;  //中獎時累計金額
             }
           break;
           case 2: //特獎，號碼全中
@@ -66,7 +66,7 @@ include_once "base.php";
               echo "</td>";
               echo "</tr>";
               $all_res=1;
-              $sum=$sum+2000000;
+              $sum=$sum+2000000;  //中獎時累計金額
             }
           break;
           case 3: //頭獎，依中獎號碼數決定獎項
@@ -75,7 +75,7 @@ include_once "base.php";
               $target=mb_substr($award['number'],$i,(8-$i),'utf8');
               $mynumber=mb_substr($inv['number'],$i,(8-$i),'utf8');
               if($target==$mynumber){
-                  switch($i){
+                  switch($i){    //根據不同獎項有不同的中獎金額
                     case 5: //六獎
                       $money=200;
                     break;
@@ -106,7 +106,7 @@ include_once "base.php";
             if($res!=-1){
               echo "<tr>";
               echo "<td>";
-              echo $inv['code']." ".mb_substr($inv['number'],0,$res,'utf8')."<span class='text-danger'>".mb_substr($inv['number'],$res,(8-$res),'utf8')."</span>";
+              echo $inv['code']." ".mb_substr($inv['number'],0,$res,'utf8')."<span class='text-danger'>".mb_substr($inv['number'],$res,(8-$res),'utf8')."</span>";  //呈現紅色的數字代表對中的數字
               echo "</td>";
               echo "<td>";
               echo $awardStr[$res]."獎";
@@ -116,14 +116,14 @@ include_once "base.php";
               echo "</td>";
               echo "</tr>";
               $all_res=1;
-              $sum=$sum+$money;
+              $sum=$sum+$money;  //中獎時累計金額
             }
           break;
           case 4:
             if($award['number']==mb_substr($inv['number'],5,3,'utf8')){
               echo "<tr style='border-bottom:2px solid'>";
               echo "<td>";
-              echo $inv['code']." ".mb_substr($inv['number'],0,5,'utf8')."<span class='text-danger'>".mb_substr($inv['number'],5,3,'utf8')."<span>";
+              echo $inv['code']." ".mb_substr($inv['number'],0,5,'utf8')."<span class='text-danger'>".mb_substr($inv['number'],5,3,'utf8')."<span>";  //呈現紅色的數字代表對中的數字
               echo "</td>";
               echo "<td>";
               echo "增開六獎";
@@ -133,7 +133,7 @@ include_once "base.php";
               echo "</td>";
               echo "</tr>";
               $all_res=1;
-              $sum=$sum+200;
+              $sum=$sum+200;  //中獎時累計金額
             }
   
   

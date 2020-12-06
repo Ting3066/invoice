@@ -15,7 +15,7 @@
           </div>
           <div class="input-group input-group-sm pl-1 col-3">
             <select class="custom-select" name="period" required>
-              <option></option>   <!--為了讓required有作用-->
+              <option></option>   <!--為了讓required有作用，此欄視為空值-->
               <option value="1">01~02</option>
               <option value="2">03~04</option>
               <option value="3">05~06</option>

@@ -7,7 +7,7 @@
     </button>
     <button>
       <a href="index.php?do=invoices_list.php" class="text-decoration-none">取消</a>
-      <!-- 取消則回到當期發票 -->
+      <!-- 取消則回到發票管理頁面 -->
 
     </button>
   </div>

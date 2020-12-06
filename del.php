@@ -1,5 +1,5 @@
 <?php
-//執行發票刪除動作
+//執行刪除動作
 
 include_once "base.php";
 

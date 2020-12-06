@@ -63,7 +63,7 @@
       //在需要顯示在此區的網頁網址加上 ?do=....
       //判斷 isset($_GET['do'])
       //若成立則是用include帶入，並顯示在這個區域
-      //若不成立則顯示一開始的main.php內容
+      //若不成立則顯示新增發票的內容
       if(isset($_GET['do'])){
         include_once $_GET['do'];
       }else{

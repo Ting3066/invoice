@@ -98,15 +98,12 @@ if(!empty($award_numbers)){
               </div>
             </div>
             <div class="input-group input-group-sm col-2">
-              <button class="btn btn-sm btn-info" type="submit"><i class="fas fa-search"></i></button>
+              <button class="btn btn-sm btn-info" type="submit"><i class="fas fa-search"></i></button>  <!--查詢期別按鈕-->
             </div>
           </div>
         </td>
       </tr>
       <?php
-        //判斷是否有中獎號碼資料，若$awards為空值，可能是尚未開獎或者還沒有輸入該期獎號
-        
-  
           //利用foreach將資料庫查詢結果一一帶出，並將不同獎別的號碼給定特定變數
           foreach($awards as $award){
             switch($award['type']){
@@ -132,11 +129,13 @@ if(!empty($award_numbers)){
           <?php
             if(!empty($special_prize)){
           ?>
-          <span class="text-danger mr-2"><?=$special_prize;?></span>
-          <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=1"><i class="fas fa-pen text-muted"></i></a>
+          <span class="text-danger mr-2"><?=$special_prize;?></span>  
+          <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=1">
+            <i class="fas fa-pen text-muted"></i>  <!--編輯按鈕-->
+          </a>  
           <?php
             }else{
-              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+              echo "<span class='text-danger'>尚未輸入獎號</span>";
             }
           ?>
         </td>
@@ -151,10 +150,12 @@ if(!empty($award_numbers)){
               if(!empty($grand_prize)){
           ?>
           <span class="text-danger mr-2"><?=$grand_prize;?></span>
-          <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=2"><i class="fas fa-pen text-muted"></i></a>
+          <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=2">
+            <i class="fas fa-pen text-muted"></i>  <!--編輯按鈕-->
+          </a>
           <?php
             }else{
-              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+              echo "<span class='text-danger'>尚未輸入獎號</span>";
             }
           ?>
         </td>
@@ -177,10 +178,12 @@ if(!empty($award_numbers)){
               }
             ?>
             </span>
-            <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=3"><i class="fas fa-pen text-muted"></i></a>
+            <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=3">
+              <i class="fas fa-pen text-muted"></i>  <!--編輯按鈕-->
+            </a>
             <?php
             }else{
-              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+              echo "<span class='text-danger'>尚未輸入獎號</span>";
             }
             ?>
           </div>
@@ -204,10 +207,12 @@ if(!empty($award_numbers)){
               }
             ?>
             </span>
-            <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=4"><i class="fas fa-pen text-muted"></i></a>
+            <a href="index.php?do=edit_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>&type=4">
+              <i class="fas fa-pen text-muted"></i>  <!--編輯按鈕-->
+            </a>
             <?php
             }else{
-              echo "<span class='text-danger'>尚未輸入該期獎號</span>";
+              echo "<span class='text-danger'>尚未輸入獎號</span>";
             }
             ?>
           </div>
@@ -218,14 +223,16 @@ if(!empty($award_numbers)){
 </form>
 
 <?php
+
+  //取一筆資料，為了取得對獎及刪除連結網址上的變數
   $award=$pdo->query($sql)->fetch();
 ?>
 <div>
   <button class="btn btn-info">
-    <a href="index.php?do=reward.php&pd=<?= $award['period'];?>&year=<?= $award['year'];?>" class="text-decoration-none text-light">對獎</a>
+    <a href="index.php?do=reward.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>" class="text-decoration-none text-light">對獎</a>
   </button>
   <button class="btn btn-danger">
-    <a href="index.php?do=del_award_numbers.php&pd=<?= $award['period'];?>&year=<?= $award['year'];?>" class="text-decoration-none text-light">刪除</a>
+    <a href="index.php?do=del_award_numbers.php&pd=<?=$award['period'];?>&year=<?=$award['year'];?>" class="text-decoration-none text-light">刪除</a>
   </button>
 </div>
 

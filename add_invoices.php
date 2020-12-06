@@ -15,7 +15,7 @@
         <td>
           <div class="input-group input-group-sm mb-3">
             <select class="custom-select" name="period" required>
-              <option><option> <!--為了讓required有作用-->
+              <option><option> <!--為了讓required有作用，此欄視為空值-->
               <option value="1">01~02</option>
               <option value="2">03~04</option>
               <option value="3">05~06</option>
@@ -52,10 +52,6 @@
       </tr>
       
     </table>
-    <!-- <div class="m-3 text-center">
-      <input type="submit" value="送出" class="mx-1">
-      <input type="reset" value="清除" class="mx-1">
-    </div> -->
     <div class="m-3 p-3 text-center">
       <button class="btn btn-sm btn-info" type="submit">送出</button>
       <button class="btn btn-sm btn-warning" type="reset">清除</button>

@@ -2,7 +2,7 @@
 //發票編輯功能
 include_once "base.php";
 
-
+//取得所有符合年份與期別的發票資料，並按照日期由新至舊排序
 $sql="select * from invoices where `period`='{$_GET['period']}' && left(date,4)='{$_GET['year']}' order by date desc,id desc";
 $invs=$pdo->query($sql)->fetchALL();
 
@@ -18,6 +18,8 @@ $invs=$pdo->query($sql)->fetchALL();
     <div class='input-group input-group-sm col-4'>
       <select  class='custom-select' name='period' disabled>
       <?php
+
+      //以期別為索引值取得月份
       $period_mon=[
       '01~02',
       '03~04',
@@ -59,13 +61,11 @@ $invs=$pdo->query($sql)->fetchALL();
 
     <?php
     foreach($invs as $inv){
-      if($inv['id']==$_GET['id']){
+      if($inv['id']==$_GET['id']){  //判斷若為要編輯的發票資料，則顯示input欄位供修改
 
-      
-    
     ?>
     <div>
-      <input type="hidden" name="id" value="<?=$inv['id'];?>">
+      <input type="hidden" name="id" value="<?=$inv['id'];?>">  <!--隱藏id欄位，僅供傳值-->
     </div>
     </tr>
     <tr class="alert-secondary">
@@ -100,7 +100,7 @@ $invs=$pdo->query($sql)->fetchALL();
       </td>
     </tr>
     <?php
-      }else{
+      }else{  //若不要編輯中的發票資料，則顯示較不明顯
     ?>
     <tr style="opacity:0.5">
       <td><?=$inv['code'].$inv['number'];?></td>

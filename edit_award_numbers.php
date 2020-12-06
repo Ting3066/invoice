@@ -2,10 +2,12 @@
 include_once "base.php";
 $period=$_GET['pd'];
 $year=$_GET['year'];
+
+//取得所有符合年份與期別的獎號資料
 $sql="select * from award_numbers where `period`='$period' && `year`='$year'";
 $awards=$pdo->query($sql)->fetchAll();
 
-
+//對不同獎項的獎號指定變數
 foreach($awards as $award){
   switch($award['type']){
     case 1: //特別獎
@@ -23,6 +25,7 @@ foreach($awards as $award){
   }
 }
 
+//以期別為索引值得到月份
 $period_mon=[
   '01~02',
   '03~04',
@@ -32,12 +35,11 @@ $period_mon=[
   '11~12'
 ];
 
-$awd=$pdo->query($sql)->fetch();
 ?>
 
 <form action="update_award_numbers.php" method="post" class="container">
-  <!--為了在update_award_numbers中得到還沒修改前的獎號資料而設置的隱藏欄位-->
-  
+
+  <!--因為頭獎與增開六獎各有三個欄位，為了在update_award_numbers中得到還沒修改前的獎號資料而設置的隱藏欄位，藉此得知修改的是哪一欄位-->
   <input type="hidden" name="pre_first[]" value="<?= $first_prize[0]?>">
   <input type="hidden" name="pre_first[]" value="<?= $first_prize[1]?>">
   <input type="hidden" name="pre_first[]" value="<?= $first_prize[2]?>">
@@ -77,7 +79,7 @@ $awd=$pdo->query($sql)->fetch();
           ?>
           </select>
 
-          <!--因為disabled屬性會造成欄位無法傳值，因此再製造一個隱藏的欄位用以傳值-->
+          <!--因為disabled屬性會造成欄位無法傳值，因此再製造一個隱藏的欄位用以傳值，select選單無法使用hidden屬性，替代方案為display:none-->
           <select style="display:none" class='custom-select' name='period'>
           <?php
             for($i=1;$i<7;$i++){
