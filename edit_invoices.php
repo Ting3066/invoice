@@ -7,6 +7,44 @@ $sql="select * from invoices";
 $invs=$pdo->query($sql)->fetchALL();
 
 ?>
+<div class="container">
+  <div class="d-flex justify-content-center mb-3">
+    <div class='input-group input-group-sm col-4'>
+      <input type='number' value="<?=$_GET['year'];?>" class='form-control' disabled>
+      <div class='input-group-append'>
+      <label class='input-group-text'>年</label>
+      </div>
+    </div>
+    <div class='input-group input-group-sm col-4'>
+      <select  class='custom-select' name='period' disabled>
+      <?php
+      $period_mon=[
+      '01~02',
+      '03~04',
+      '05~06',
+      '07~08',
+      '09~10',
+      '11~12'
+      ];
+
+      for($i=1;$i<7;$i++){
+        if($_GET['period']==$i){
+          //6個期別中，與$_GET['pd']相等的便是輸入的期別，增加 selected='selected' 使他設為預設值
+          echo "<option selected='selected' value='{$_GET['period']}'>{$period_mon[$_GET['period']-1]}</option>";
+          
+        }else{
+          //與$_GET['pd']不相等的期別則成為下拉選單中的選項，不是預設值
+          echo "<option value='".$i."'>".$period_mon[$i-1]."</option>";
+          
+        }
+      }
+      ?>
+      </select>
+    </div>
+  </div>
+</div>
+
+
 
 <form action="update_invoices.php" method="post">
   <table class="table table-borderless text-center text-muted">

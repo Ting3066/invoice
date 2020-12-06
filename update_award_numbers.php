@@ -13,13 +13,13 @@ foreach($_POST as $prize => $number){
 
     //特別獎，type=1
     case "special_prize":
-      $sql1=$sql."`number`='$number' where `type`='1'";
+      $sql1=$sql."`number`='$number' where `type`='1' && `period`='{$_POST['period']}'";
       $pdo->exec($sql1);
     break;
 
     //特獎，typw=2
     case "grand_prize":
-      $sql2=$sql."`number`='$number' where `type`='2'";
+      $sql2=$sql."`number`='$number' where `type`='2' && `period`='{$_POST['period']}'";
       $pdo->exec($sql2);
     break;
 
@@ -32,7 +32,7 @@ foreach($_POST as $prize => $number){
         $first_prize[]=$first;
       }
       for($i=0;$i<count($first_prize);$i++){
-        $sql3=$sql."`number`='$first_prize[$i]' where `number`='$pre_first_prize[$i]' && `type`='3'";
+        $sql3=$sql."`number`='$first_prize[$i]' where `number`='$pre_first_prize[$i]' && `type`='3' && `period`='{$_POST['period']}'";
         $pdo->exec($sql3);
       }
     break;
@@ -46,7 +46,7 @@ foreach($_POST as $prize => $number){
         $add_six_prize[]=$six;
       }
       for($j=0;$j<count($add_six_prize);$j++){
-        $sql4=$sql."`number`='$add_six_prize[$j]' where `number`='$pre_add_six_prize[$j]' && `type`='4'";
+        $sql4=$sql."`number`='$add_six_prize[$j]' where `number`='$pre_add_six_prize[$j]' && `type`='4' && `period`='{$_POST['period']}'";
         $pdo->exec($sql4);
         echo $sql4;
       }

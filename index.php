@@ -25,23 +25,17 @@
       </button>
       <div class="collapse navbar-collapse" id="Menu">
         <ul class="navbar-nav">
-          <li class="mt-2 nav-item active">
-            <a class="nav-link" href="index.php">首頁</a>
-          </li>
           <li class="mt-2 nav-item">
             <a class="nav-link" href="?do=add_invoices.php">新增發票</a>
           </li>
           <li class="mt-2 nav-item">
-            <a class="nav-link" href="?do=edit_invoices.php">發票管理</a>
+            <a class="nav-link" href="?do=invoices_list.php">發票管理</a>
           </li>
           <li class="mt-2 nav-item">
             <a class="nav-link" href="?do=add_award_numbers.php">新增獎號</a>
           </li>
           <li class="mt-2 nav-item">
             <a class="nav-link" href="?do=award_numbers_list.php">獎號清單</a>
-          </li>
-          <li class="mt-2 nav-item">
-            <a class="nav-link" href="#">對獎</a>
           </li>
         </ul>
       </div>
@@ -58,12 +52,10 @@
   <div class="mx-3 row d-flex justify-content-center">
     <div class="col-12 d-flex justify-content-center">
       <div class="col-2 d-none d-lg-block">
-        <a href="index.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-home mx-2"></i>　首頁　</button></a>
         <a href="?do=add_invoices.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-plus-square mx-2"></i>新增發票</button></a>
         <a href="?do=invoices_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-clipboard mx-2"></i>發票管理</button></a>
         <a href="?do=add_award_numbers.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-plus-square mx-2"></i>新增獎號</button></a>
         <a href="?do=award_numbers_list.php"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-list-alt mx-2"></i>獎號清單</button></a>
-        <a href="#"><button type="button" class="btn btn-lg btn-block btn-outline-secondary my-1"><i class="fas fa-search-dollar mx-2"></i>　對獎　</button></a>
       </div>
       <div class="col-7 border rounded py-5 d-flex align-items-center flex-column">
       <?php
@@ -74,9 +66,8 @@
       //若不成立則顯示一開始的main.php內容
       if(isset($_GET['do'])){
         include_once $_GET['do'];
-      }
-      else{
-        include_once "main.php";
+      }else{
+        include_once "add_invoices.php";
       }
       ?>
       </div>
