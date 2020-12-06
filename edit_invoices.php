@@ -3,7 +3,7 @@
 include_once "base.php";
 
 
-$sql="select * from invoices";
+$sql="select * from invoices where `period`='{$_GET['period']}' && left(date,4)='{$_GET['year']}' order by date desc,id desc";
 $invs=$pdo->query($sql)->fetchALL();
 
 ?>
@@ -47,6 +47,8 @@ $invs=$pdo->query($sql)->fetchALL();
 
 
 <form action="update_invoices.php" method="post">
+<input type="hidden" name="period" value="<?=$_GET['period'];?>">
+<input type="hidden" name="year" value="<?=$_GET['year'];?>">
   <table class="table table-borderless text-center text-muted">
     <tr class="font-weight-bolder bg-secondary text-light">
       <td>發票號碼</td>
@@ -87,11 +89,13 @@ $invs=$pdo->query($sql)->fetchALL();
       <td>
         <div class="d-flex">
           <button class="btn btn-sm btn-success mx-2">
-            <a href="?do=update_invoices.php&id=<?=$inv['id'];?>" class="text-decoration-none text-light"><i class="fas fa-check"></i></a>  <!-- 確認編輯 -->
+            <i class="fas fa-check"></i>  <!--確認編輯，提交表單-->
           </button>
-          <button class="btn btn-sm btn-danger">
-            <a href="?do=invoices_list.php&id=<?=$inv['id'];?>" class="text-decoration-none text-light"><i class="fas fa-times"></i></a> <!-- 取消編輯 -->
-          </button>
+          <div type="button" class="btn btn-sm btn-danger" value="">
+            <a href="index.php?do=invoices_list.php&pd=<?=$_GET['period'];?>&year=<?=$_GET['year'];?>" class="text-decoration-none text-light">
+            <i class="fas fa-times"></i>  <!--取消編輯-->
+            </a>
+          </div>
         </div>
       </td>
     </tr>

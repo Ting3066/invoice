@@ -46,7 +46,7 @@ if(!empty($invoices)){
         }
 
         //查詢資料庫，若有設$_GET['pd']與$_GET['year'，則以此做為欄位period與date年份的判斷值
-        $sql="select * from invoices where period='$period' && left(date,4)='$year' order by date desc";
+        $sql="select * from invoices where period='$period' && left(date,4)='$year' order by date desc,id desc";
         $invs=$pdo->query($sql)->fetchALL();
         
 
@@ -81,7 +81,7 @@ if(!empty($invoices)){
           }
           
           //查詢資料庫，若沒有設$_GET['pd']與$_GET['year'，則以$period (最新期別) 與$year (最近年份) 分別作為period與year的判斷值
-          $sql="select * from invoices where period='$period' && left(date,4)='$year' order by date desc";
+          $sql="select * from invoices where period='$period' && left(date,4)='$year' order by date desc,id desc";
           $invs=$pdo->query($sql)->fetchALL();
 
         
@@ -120,7 +120,7 @@ if(!empty($invoices)){
         <a href="?do=edit_invoices.php&id=<?=$inv['id'];?>&period=<?=$period;?>&year=<?=$year;?>" class="text-decoration-none text-light"><i class="fas fa-edit"></i></a>  <!-- 發票編輯功能 -->
       </button>
       <button class="btn btn-sm btn-danger">
-        <a href="?do=del_invoices.php&id=<?=$inv['id'];?>" class="text-decoration-none text-light"><i class="fas fa-trash-alt"></i></a> <!-- 發票刪除功能 -->
+        <a href="?do=del_invoices.php&id=<?=$inv['id'];?>&period=<?=$period;?>&year=<?=$year;?>" class="text-decoration-none text-light"><i class="fas fa-trash-alt"></i></a> <!-- 發票刪除功能 -->
       </button>
     </td>
   </tr>
