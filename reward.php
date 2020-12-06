@@ -39,7 +39,7 @@ include_once "base.php";
             if($award['number']==$inv['number']){
               echo "<tr>";
               echo "<td>";
-              echo $inv['code'].$inv['number'];
+              echo $inv['code']." <span class='text-danger'>".$inv['number']."</span>";
               echo "</td>";
               echo "<td>";
               echo "特別獎";
@@ -56,7 +56,7 @@ include_once "base.php";
             if($award['number']==$inv['number']){
               echo "<tr>";
               echo "<td>";
-              echo $inv['code'].$inv['number'];
+              echo $inv['code']." <span class='text-danger'>".$inv['number']."</span>";
               echo "</td>";
               echo "<td>";
               echo "特獎";
@@ -104,13 +104,12 @@ include_once "base.php";
             //判斷最後中的獎項
             $awardStr=['頭','二','三','四','五','六'];
             if($res!=-1){
-              // echo "恭喜你!發票號碼".$inv['code'].$inv['number']."中了{$awardStr[$res]}獎，獎金".$money."元<br>";
               echo "<tr>";
               echo "<td>";
-              echo $inv['code'].$inv['number'];
+              echo $inv['code']." ".mb_substr($inv['number'],0,$res,'utf8')."<span class='text-danger'>".mb_substr($inv['number'],$res,(8-$res),'utf8')."</span>";
               echo "</td>";
               echo "<td>";
-              echo $awardStr[$i]."獎";
+              echo $awardStr[$res]."獎";
               echo "</td>";
               echo "<td>";
               echo number_format($money);
@@ -122,10 +121,9 @@ include_once "base.php";
           break;
           case 4:
             if($award['number']==mb_substr($inv['number'],5,3,'utf8')){
-              // echo "恭喜你!發票號碼".$inv['code'].$inv['number']."中了增開六獎，獎金200元<br>";
               echo "<tr style='border-bottom:2px solid'>";
               echo "<td>";
-              echo $inv['code'].$inv['number'];
+              echo $inv['code']." ".mb_substr($inv['number'],0,5,'utf8')."<span class='text-danger'>".mb_substr($inv['number'],5,3,'utf8')."<span>";
               echo "</td>";
               echo "<td>";
               echo "增開六獎";
@@ -147,7 +145,7 @@ include_once "base.php";
       echo "</table>";
       echo "很可惜，都沒有中獎";
     }else{
-      echo "<tr>";
+      echo "<tr style='background:#fbfbfb'>";
       echo "<th colspan=2>總計</th>";
       echo "<th>".number_format($sum)."</th>";
       echo "</tr>";
